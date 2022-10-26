@@ -60,6 +60,7 @@
             <Setter Property="HorizontalAlignment"
                     Value="Left"></Setter>
         </Style>
+        <local:Conversor x:Key="conversor"></local:Conversor>
     </Window.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
@@ -82,10 +83,10 @@
 
                 <TextBlock Grid.Row="0"
                            Grid.Column="0" 
-                           Style="{StaticResource etiquetaCampo}">Texto superior</TextBlock>
+                           Style="{StaticResource etiquetaCampo}" >Texto Superior</TextBlock>
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
-                           Style="{StaticResource etiquetaCampo}">Texto inferior</TextBlock>
+                           Style="{StaticResource etiquetaCampo}" >Texto inferior</TextBlock>
                 <TextBlock Grid.Row="2"
                            Grid.Column="0"
                            Style="{StaticResource etiquetaCampo}">Alto</TextBlock>
@@ -100,10 +101,10 @@
                            Style="{StaticResource etiquetaCampo}">Borde</TextBlock>
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
-                         x:Name="superiorTextBox">Texto superior</TextBox>
+                         x:Name="superiorTextBox">Texto Superior</TextBox>
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
-                         x:Name="inferiorTextBox">Texto inferior</TextBox>
+                         x:Name="inferiorTextBox">Texoooooooooo</TextBox>
                 <Slider Grid.Row="2"
                         Grid.Column="1"
                         x:Name="altoSlider"></Slider>
@@ -121,13 +122,14 @@
             </Grid>
             <Border Background="#FFF3D2D2"
                     BorderBrush="Black"
-                    Margin="10">
-                <Grid>
-                    <Image Stretch="Fill" />
+                    Margin="10"
+                    BorderThickness="{Binding ElementName=bordeCheckBox, Path=IsChecked, Converter={StaticResource conversor}}">
+                <Grid Height="{Binding ElementName=altoSlider, Path=Value}" Width="{Binding ElementName=anchoSlider, Path=Value}">
+                    <Image Stretch="Fill" Source="{Binding ElementName=imagenTextBox, Path=Text}" />
                     <TextBlock Style="{StaticResource textoMeme}"
-                               VerticalAlignment="Top"></TextBlock>
+                               VerticalAlignment="Top" Text="{Binding ElementName=superiorTextBox, Path=Text}"></TextBlock>
                     <TextBlock Style="{StaticResource textoMeme}"
-                               VerticalAlignment="Bottom"></TextBlock>
+                               VerticalAlignment="Bottom" Text="{Binding ElementName=inferiorTextBox, Path=Text}"></TextBlock>
                 </Grid>
             </Border>
         </StackPanel>
